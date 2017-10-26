@@ -11,10 +11,11 @@ using namespace std;
  */
 
 int const tailleX = 2;
-int const tailleY = 10000000;
+int const tailleY = 100000000;
 
 int tableau[tailleX][tailleY];
 
+chrono::time_point<chrono::system_clock> debutGenerationTableau, finGenerationTableau;
 chrono::time_point<chrono::system_clock> debutTraitementA, finTraitementA;
 chrono::time_point<chrono::system_clock> debutTraitementB, finTraitementB;
 
@@ -64,7 +65,16 @@ void traitementB()
 
 int main()
 {
-	cout << "Programme avec deux threads" << endl;
+	cout << "Traitement avec deux threads." << endl;
+	cout << "Nous effectuons les calculs sur un tableau de " << tailleY << " elements." << endl;
+
+	// Remplissage du tableau
+	// Nous utilisons des nombres aléatoires.
+	// Les calculs réalisés par les threads est [0][0] avec [1][0] etc...
+
+	cout << "Remplissage du tableau en cours, veuillez patientez quelques secondes." << endl;
+
+	debutGenerationTableau = chrono::system_clock::now();
 
 	for (int x = 0; x < tailleX; x++)
 	{
@@ -73,6 +83,10 @@ int main()
 			tableau[x][y] = rand() % 10;
 		}
 	}
+
+	finGenerationTableau = chrono::system_clock::now();
+
+	cout << "Remplissage du tableau en " << chrono::duration_cast<chrono::milliseconds>(finGenerationTableau - debutGenerationTableau).count() << " ms." << endl;
 
 	thread threadA(traitementA);
 	thread threadB(traitementB);
