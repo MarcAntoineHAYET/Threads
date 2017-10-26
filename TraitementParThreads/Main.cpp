@@ -72,7 +72,7 @@ int main()
 	// Nous utilisons des nombres aléatoires.
 	// Les calculs réalisés par les threads est [0][0] avec [1][0] etc...
 
-	cout << "Remplissage du tableau en cours, veuillez patientez quelques secondes." << endl;
+	cout << "Remplissage du tableau en cours, veuillez patienter quelques secondes." << endl;
 
 	debutGenerationTableau = chrono::system_clock::now();
 
